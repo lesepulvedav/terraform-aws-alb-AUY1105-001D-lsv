@@ -3,7 +3,7 @@ resource "aws_lb" "main" {
   name               = var.alb_name
   internal           = false
   load_balancer_type = var.load_balancer_type
-  security_groups    = [var.security_group_id]
+  security_groups    = var.security_group_ids
   subnets            = var.subnets
 
   enable_deletion_protection = false

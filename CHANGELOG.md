@@ -3,14 +3,11 @@
 Este archivo contiene los cambios realizados en el proyecto de infraestructura como código utilizando Terraform. Sigue el formato Keep a Changelog y respeta la semántica de versiones Semantic Versioning.
 
 [0.2.0] - 2026-05-28
-Changed
+Agregado
 
 - Se añadieron nuevas variables de entrada: `subnets`, `security_group_id`, `vpc_id` e `instance_id` para parametrizar la creación del ALB y su target group.
 - El ALB y el Target Group ahora usan entradas externas en lugar de depender de recursos locales dentro del módulo.
 - Se eliminó la condición `count` en la creación del `aws_lb_target_group_attachment` para evitar dependencias computadas en tiempo de plan; `instance_id` ahora puede ser `null`.
-
-Breaking
-
 - Interfaz del módulo modificada: consumidores deben proporcionar `subnets`, `security_group_id` y `vpc_id`.
 
 [0.1.1]
