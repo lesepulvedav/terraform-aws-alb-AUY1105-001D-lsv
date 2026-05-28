@@ -33,3 +33,27 @@ variable "protocol" {
   type        = string
   default     = "HTTP"
 }
+
+variable "subnets" {
+  description = "Lista de subnets donde desplegar el ALB"
+  type        = list(string)
+  default     = []
+}
+
+variable "security_group_id" {
+  description = "ID del security group del ALB"
+  type        = string
+  default     = ""
+}
+
+variable "vpc_id" {
+  description = "ID del VPC donde crear el Target Group"
+  type        = string
+  default     = ""
+}
+
+variable "instance_id" {
+  description = "ID de la instancia EC2 a registrar en el Target Group (opcional)"
+  type        = string
+  default     = null
+}

@@ -3,8 +3,8 @@ resource "aws_lb" "main" {
   name               = var.alb_name
   internal           = false
   load_balancer_type = var.load_balancer_type
-  security_groups    = [aws_security_group.alb.id]
-  subnets            = [aws_subnet.public.id, aws_subnet.public_2.id]
+  security_groups    = [var.security_group_id]
+  subnets            = var.subnets
 
   enable_deletion_protection = false
 
@@ -19,7 +19,7 @@ resource "aws_lb_target_group" "web" {
   name     = var.tg_alb_name
   port     = var.port
   protocol = var.protocol
-  vpc_id   = aws_vpc.main.id
+  vpc_id   = var.vpc_id
 
   health_check {
     enabled             = true
@@ -40,7 +40,7 @@ resource "aws_lb_target_group" "web" {
 # ─── REGISTRO DE LA EC2 EN EL TARGET GROUP ────────────────────────────────────
 resource "aws_lb_target_group_attachment" "web" {
   target_group_arn = aws_lb_target_group.web.arn
-  target_id        = aws_instance.web.id
+  target_id        = var.instance_id
   port             = var.port
 }
 
